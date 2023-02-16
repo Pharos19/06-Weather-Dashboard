@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/e9af0492c7.js" crossorigin="anonymous"></script>"
+    <!--Customer Styles-->
+    <link rel="stylesheet" href="Assets/css/style.css"
+    <title>Weather Dashboard</title>
+</head>
+
+<body>
+    <header class="header">Weather Dashboard</header>
+    <main class="m-1">
+    <!-- search box -->
+    <div class="row">
+        <div class="col-12 col-md-4 container card search-box">
+            <div class="card">
+            <h2 class="card-header">Search for a City: </h2>
+            <form id="user-form" class="card-body">
+                <input class="city-search" placeholder="Santiago" type="text"/>
+                <button class="search-btn" type="submit">Search</button>
+            </form>
+            </div>
+        <div class="save-container">
+            <!--saved cities create-->
+        </div>
+        </div>
+
+        <!-- current city display -->
+        <div class="col-12 col-md-8 container">
+            <div class="card" id="city-card">
+                <h2 class="current-city">
+                    Current City: <span id="searched-city"></span>
+                </h2>
+                <div class="text">Temp: <span id="city-temp"></span> F</div>
+                <div class="text">Wind: <span id="city-wind"></span> mph</div>
+                <div class="text">Humidity: <span id="city-humidity"></span>%</div>
+                <div class="text">UV Index: <span id="city-uv"></span></div>
+        </div>
+       </div>     
+    </div>
+    <!--forecast cards -->
+    <div class="row">
+        <h3 class="col-4">5 Day Forecast:</h3>
+    </div>
+    <div class="row card-group forecast-container">
+        <!-- <div class="card forecast-card forecast-text">
+            <div id="forecast-date"></div>
+        <div>Temp: <span class="forecast-temp"></span></div>
+        <div>Wind: <span class="forecast-wind></span></div>
+        <div>Humidity: <span class="forecast-humidity"></span></div>
+        </div> -->
+    </div>
+    </main>
+    <!-- moment -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" integrity="sha512-CryKbMe7sjSCDPl18jtJI5DR5jtkUWxPXWaLCst6QjH8wxDexfRJic2WRmRXmstr2Y8SxDDWuBO6CQC6IE4KTA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>"
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="./Assets/js/script.js"></script>
+</body>
+</html>
