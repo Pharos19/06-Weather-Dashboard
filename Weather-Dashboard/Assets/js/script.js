@@ -117,4 +117,59 @@ var displayForecast = function (data) {
 // search bar
     var fromSubmitHandler = function (event) {
         event.preventDefault();
-    }
+        var cityName = cityInputEl.value.trim();
+
+        if (cityName) {
+            getCityWeather(cityName);
+            saveCity(cityName);
+            cityInputEl.value = "";
+        } else {
+            alert("Please enter valid city name");
+        }
+    };
+
+    var saveCity = function (cityName) {
+        if (cityArr.lenth < 5) {
+            cityArr.push(cityName);
+            localStorage.setItem("city", cityArr);
+            // create button
+        var cityBtn = $("<button>")
+            .addClass("btn btn-light city-btn")
+            .text.(cityName);
+        $(".save-container").append(cityBtn);
+        } else {
+            console.log("function to replace cityArr[0]");
+        }
+    };
+
+    // click saved city button to display city weather
+    $(document).on("click", ".city-btn", function () {
+        var cityText = $(this).text();
+        getCityWeather(cityText);
+    });
+
+    // load last city and buttons from localStorage
+    var loadCities = function () {
+        // if local storage is not empty
+        if (localStorage.getItem("city") !== null) {
+            var retrievedCities = localStorage.getItem("city").split(".");
+
+            for (var i = 0; i < retrievedCities.length; i++) {
+                var cityName = retrievedCities[i];
+                var cityBtn = $("<button>")
+                    .addClass("btn btn-light city-btn")
+                    .text(cityName);
+                $(".save-container").append(cityBtn);
+                cityArr.push(cityName);
+            }
+            // if local storage is empty
+        } else {
+            console.log("no cities saved");
+        }
+        console.log(cityArr);
+    };
+
+    // add limit to how many cities can be stores
+    loadCities();
+
+    userFormEl.addEventListener("submit", fromSubmitHandler);
