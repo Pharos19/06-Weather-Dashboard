@@ -60,3 +60,44 @@ var getForecast = function (lat, lon) {
             alert("Unable to connect to OpenWeather");
         });
 };
+
+var displayForecast = function (data) {
+    // console.log(data);
+    cityUv.textContent = data.current.uvi;
+    cityTemp.textContent = data.current.temp;
+    cityWind.textContent = data.current.wind_speed;
+    cityHumidity.textContent = data.current.humidity;
+
+    // empty div before appending info
+    $(".forecast-container").empty();
+
+    for(var i = 1; i < 6; i++) {
+        //console.log(data.daily[i]);
+        var dateDisplay = moment.unix(data.daily[i].dt).format("ddd, MMM, Do");
+        //console.log(dateDisplay);
+        var forecastCol = $("<div>").addClass("col-2");
+        var forecastCard = $("<div>").addClass("card forecast-card forecast-text");
+        var cardBody = $("<div>").addClass("card-body");
+        //
+        var forecastDate = $("<div>")
+            .attr("id", "forecast-date")
+            .addClass("card-title")
+            .text(dateDisplay);
+        var forecastTemp = $("<p>")
+            .addClass("card-text")
+            .text(
+                "Temp" +
+                    Math.round(data.daily[i].temp.day) +
+                    String.fromCharCode(186) +
+                    "F"
+            );
+        var forecastWind = $("<p>")
+            .addClass("card-text")
+            .text(data.daily[i].wind_speed);
+        var forecastHumidity = $("<p>")
+            .addClass("card-text")
+            .text(data.daily[i].humidity);
+
+            
+    }
+}
