@@ -39,4 +39,24 @@ var getCityWeather = function (city) {
      });
 };
 
-var getForecast
+var getForecast = function (lat, lon) {
+    var forecastUrl =
+    "https://api.openweathermap.org/data/2.5/onecall?lat=" +
+    lat +
+    "&lon=" +
+    lon +
+    "&exclude=hourly,minutely&units=imperial&appid=df2e9a434e3478cdfaae84165503d8aa";
+
+    fetch(forecastUrl)
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (data) {
+                    console.log(data)
+                    displayForecast(data);
+                });
+            }
+        })
+        .catch(function (error) {
+            alert("Unable to connect to OpenWeather");
+        });
+};
