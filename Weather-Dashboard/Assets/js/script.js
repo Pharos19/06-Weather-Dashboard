@@ -17,7 +17,7 @@ var getCityWeather = function (city) {
     var apiUr1 =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     city +
-    "&units=imperial&appid=df2e9a434e3478cdfaae84165503d8aa";
+    "&units=imperial&appid=";
 
     fetch(apiUr1)
      .then(function (response) {
@@ -135,7 +135,7 @@ var displayForecast = function (data) {
             // create button
         var cityBtn = $("<button>")
             .addClass("btn btn-light city-btn")
-            .text.(cityName);
+            .text(cityName);
         $(".save-container").append(cityBtn);
         } else {
             console.log("function to replace cityArr[0]");
