@@ -98,6 +98,23 @@ var displayForecast = function (data) {
             .addClass("card-text")
             .text(data.daily[i].humidity);
 
-            
+        // append variables to container
+        $(".forecast-container").append(
+            forecastCol.append(
+                forecastCard.append(
+                    cardBody.append(
+                        forecastDate,
+                        forecastTemp,
+                        forecastWind,
+                        forecastHumidity,
+                    )
+                )
+            )
+        );
     }
-}
+};
+
+// search bar
+    var fromSubmitHandler = function (event) {
+        event.preventDefault();
+    }
