@@ -1,4 +1,4 @@
-// api key = df2e9a434e3478cdfaae84165503d8aa
+var APIkey = "df2e9a434e3478cdfaae84165503d8aa"
 var userFormEl = document.querySelector("#user-form");
 var cityInputEl = document.querySelector(".city-search");
 var cityCardEl = document.querySelector("#city-card");
@@ -17,7 +17,7 @@ var getCityWeather = function (city) {
     var apiUr1 =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     city +
-    "&units=imperial&appid=";
+    "&units=imperial&appid=df2e9a434e3478cdfaae84165503d8aa";
 
     fetch(apiUr1)
      .then(function (response) {
