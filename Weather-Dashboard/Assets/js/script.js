@@ -8,7 +8,6 @@ var searchedCity = document.querySelector("#searched-city");
 var cityTemp = document.querySelector("#city-temp");
 var cityWind = document.querySelector("#city-wind");
 var cityHumidity = document.querySelector("#city-humidity");
-var cityUv = document.querySelector("#city-uv");
 
 var cityArr = [];
 
@@ -26,6 +25,7 @@ var getCityWeather = function (city) {
                 // get lat and lon for getForecast
                 var lat = data.coord.lat;
                 var lon = data.coord.lon;
+                console.log(data);
                 getForecast(lat,lon);
                 // input city name
                 searchedCity.textContent = city;
@@ -41,11 +41,7 @@ var getCityWeather = function (city) {
 
 var getForecast = function (lat, lon) {
     var forecastUrl =
-    "https://api.openweathermap.org/data/2.5/onecall?lat=" +
-    lat +
-    "&lon=" +
-    lon +
-    "&exclude=hourly,minutely&units=imperial&appid=df2e9a434e3478cdfaae84165503d8aa";
+    "https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&units=imperial&appid=df2e9a434e3478cdfaae84165503d8aa";
 
     fetch(forecastUrl)
         .then(function (response) {
@@ -62,18 +58,17 @@ var getForecast = function (lat, lon) {
 };
 
 var displayForecast = function (data) {
-    // console.log(data);
-    cityUv.textContent = data.current.uvi;
-    cityTemp.textContent = data.current.temp;
-    cityWind.textContent = data.current.wind_speed;
-    cityHumidity.textContent = data.current.humidity;
+    console.log(data);
+    cityTemp.textContent = data.list[0].main.temp;
+    cityWind.textContent = data.list[0].wind.speed;
+    cityHumidity.textContent = data.list[0].main.humidity;
 
     // empty div before appending info
     $(".forecast-container").empty();
 
     for(var i = 1; i < 6; i++) {
         //console.log(data.daily[i]);
-        var dateDisplay = moment.unix(data.daily[i].dt).format("ddd, MMM, Do");
+        var dateDisplay = moment.unix(data.list[i].dt).format("ddd, MMM, Do");
         //console.log(dateDisplay);
         var forecastCol = $("<div>").addClass("col-2");
         var forecastCard = $("<div>").addClass("card forecast-card forecast-text");
@@ -87,16 +82,16 @@ var displayForecast = function (data) {
             .addClass("card-text")
             .text(
                 "Temp" +
-                    Math.round(data.daily[i].temp.day) +
+                    Math.round(data.list[i].main.temp) +
                     String.fromCharCode(186) +
                     "F"
             );
         var forecastWind = $("<p>")
             .addClass("card-text")
-            .text(data.daily[i].wind_speed);
+            .text(data.list[i].wind.speed);
         var forecastHumidity = $("<p>")
             .addClass("card-text")
-            .text(data.daily[i].humidity);
+            .text(data.list[i].main.humidity);
 
         // append variables to container
         $(".forecast-container").append(
